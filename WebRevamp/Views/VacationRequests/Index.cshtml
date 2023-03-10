@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebRevamp.Models.VacationRequest>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Vacations Requests</h1>
+
+<p class="btn btn-primary">
+    <a class="text-white text-decoration-none" asp-action="Create">Apply for a Vacation</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HODApprovalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpsApprovalStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HODApprover)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpsApprover)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HODApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpsApprovalStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HODApprover.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpsApprover.Id)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>*@
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+
+                    @if (item.HODApprovalStatus == "new")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">HOD Approval</a>
+                }
+                @if (item.OpsApprovalStatus == "new" && item.HODApprovalStatus == "approved")
+                {
+                    <a asp-action="Edit" asp-route-id="@item.Id">OPS Approval</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

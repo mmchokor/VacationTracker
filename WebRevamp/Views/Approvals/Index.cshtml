@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebRevamp.Models.Approval>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Employees on Vacation:</h1>
+
+@*<p>
+    <a asp-action="Create">Create New</a>
+</p>*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApprovalDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VacationRequest)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Approver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Approver)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VacationRequest.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Approver.Id)
+            </td>
+            <td>
+                @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |*@
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> @*|
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

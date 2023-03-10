@@ -15,11 +15,6 @@ namespace WebRevamp.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Employee>()
-                .HasMany(e => e.VacationRequests)
-                .WithOne(v => v.Employee)
-                .HasForeignKey(v => v.EmployeeId);
-
             modelBuilder.Entity<Approval>()
                 .HasOne(a => a.VacationRequest)
                 .WithMany(v => v.Approvals)

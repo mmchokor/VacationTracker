@@ -12,9 +12,6 @@ namespace WebRevamp.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-
-        public virtual ICollection<VacationRequest> VacationRequests { get; set; }   // collection navigation property
-        public virtual ICollection<Approval> Approvals { get; set; }
     }
 
 }
